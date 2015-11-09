@@ -30,7 +30,7 @@ public class ShotScript : MonoBehaviour
 
             line.SetPosition(0, ray.origin);
 
-            if (Physics.Raycast(ray, out hit, MyContext.MaxLaserDistance))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, MyContext.MaxLaserDistance))
             {
                 line.SetPosition(1, hit.point);
                 if (hit.transform)
