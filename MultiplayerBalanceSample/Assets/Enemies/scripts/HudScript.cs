@@ -11,9 +11,9 @@ public class HudScript : MonoBehaviour {
     }
     void Update()
     {
-        if (MyContext.EnemiesDestroyed == 10)
+        if (MyContext.EnemiesDestroyed == MyContext.EnemiesDestroyedToWin)
             Application.LoadLevel("Win");
-        if (MyContext.EnemiesEscaped == 10)
+        if (MyContext.EnemiesEscaped == MyContext.EnemiesEscapedToLose)
             Application.LoadLevel("GameOver");
 
     }

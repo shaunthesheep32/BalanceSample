@@ -10,6 +10,10 @@ public struct MyContext
     #endregion
 
     #region константы
+    //кол0во врагов чтобы проиграть
+    public const float EnemiesEscapedToLose = 10;
+    //кол-во врагов чтобы выиграть
+    public const float EnemiesDestroyedToWin = 10;
     //враг-куб минимальный порог спавна, сек
     public const float CubeEnemySpawnMin = 5;
     //враг-куб максимальный порог спавна, сек
