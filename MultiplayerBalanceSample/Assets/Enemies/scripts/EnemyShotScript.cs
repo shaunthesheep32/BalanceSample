@@ -3,8 +3,8 @@ using System.Collections;
 
 public class EnemyShotScript : MonoBehaviour {
 
-    public Rigidbody projectile;
-    private float initialSpeed = 20.0f;
+    public GameObject projectile;
+    private float initialSpeed = 200.0f;
     private float reloadTime = 0.5f;
     private float ammoCount = 20f;
     private float lastShot = -10.0f;
@@ -18,9 +18,12 @@ public class EnemyShotScript : MonoBehaviour {
 	void Update () {
         
         //// Did the time exceed the reload time?
-        if (Time.time > reloadTime + lastShot && ammoCount > 0)
+        if ((Time.time > reloadTime + lastShot) && (ammoCount > 0))
         {
-            Rigidbody instantiatedProjectile = (Rigidbody)Instantiate(projectile, transform.position, transform.rotation);
+            GameObject instantiatedProjectile = (GameObject) Instantiate(projectile, transform.position, transform.rotation);
+            instantiatedProjectile.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(0, 0, initialSpeed));
+            lastShot = Time.time;
+            ammoCount--;
         }
         //{
         //    // create a new projectile, use the same position and rotation as the Launcher.
