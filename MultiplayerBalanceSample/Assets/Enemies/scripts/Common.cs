@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-    public struct MyContext
+    public static class MyContext
     {
         #region  изменяемые значения 
         public static int EnemiesExist = 0;
@@ -31,5 +31,9 @@ using System.Collections;
         public const float MaxLaserDistance = 100;
         //сила прыжка
         public const float JumpPower = 15f;
-        #endregion
-    }
+        //минимальное приближение куба к точке маршрута перед сменой
+        public const float MinimumDistance = 10f;
+        //точки маршрутов кубов
+        public static Vector3[] WayPoints = { new Vector3(15, 0, 5), new Vector3(11, 0, 22.5f), new Vector3(-33, 0, 28), new Vector3(-14, 0, -37), new Vector3(-14.5f, 0, -9.5f), new Vector3(-47.7f, 0, -9.5f), new Vector3(20.3f, 0, 10.1f), new Vector3(26.6f, 7.3f, -21.15f), new Vector3(-3.03f, 4.86f, -21.15f) };
+    #endregion
+}

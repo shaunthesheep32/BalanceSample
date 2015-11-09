@@ -18,13 +18,13 @@ public class EnemyShotScript : MonoBehaviour {
 	void Update () {
         
         //// Did the time exceed the reload time?
-        if ((Time.time > reloadTime + lastShot) && (ammoCount > 0))
-        {
-            GameObject instantiatedProjectile = (GameObject) Instantiate(projectile, transform.position, transform.rotation);
-            instantiatedProjectile.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(0, 0, initialSpeed));
-            lastShot = Time.time;
-            ammoCount--;
-        }
+        //if ((Time.time > reloadTime + lastShot) && (ammoCount > 0))
+        //{
+        //    GameObject instantiatedProjectile = (GameObject) Instantiate(projectile, transform.position, transform.rotation);
+        //    instantiatedProjectile.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(0, 0, initialSpeed));
+        //    lastShot = Time.time;
+        //    ammoCount--;
+        //}
         //{
         //    // create a new projectile, use the same position and rotation as the Launcher.
         //    var instantiatedProjectile : Rigidbody = Instantiate(projectile, transform.position, transform.rotation);
