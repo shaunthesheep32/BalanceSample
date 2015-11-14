@@ -7,8 +7,9 @@ using System.Collections;
         #region  изменяемые значения 
         public static int EnemiesExist = 0;
         public static int EnemiesEscaped = 0;
-        public static int EnemiesDestroyed = 0;
-        #endregion
+		public static int EnemiesDestroyed = 0;
+		public static float angle = 180;		// начальный угол сканеры (с учетом особенностей 3D-объекта Quad, указываем 180, иначе ставим угол соответсвующий "лицу" объекта (по оси Z) 
+		#endregion
 
         #region константы
         //кол0во врагов чтобы проиграть
@@ -32,8 +33,12 @@ using System.Collections;
         //сила прыжка
         public const float JumpPower = 15f;
         //минимальное приближение куба к точке маршрута перед сменой
-        public const float MinimumDistance = 10f;
+		public const float MinimumDistance = 10f;
         //точки маршрутов кубов
-        public static Vector3[] WayPoints = { new Vector3(15, 0, 5), new Vector3(11, 0, 22.5f), new Vector3(-33, 0, 28), new Vector3(-14, 0, -37), new Vector3(-14.5f, 0, -9.5f), new Vector3(-47.7f, 0, -9.5f), new Vector3(20.3f, 0, 10.1f), new Vector3(26.6f, 7.3f, -21.15f), new Vector3(-3.03f, 4.86f, -21.15f) };
-    #endregion
+		public static Vector3[] WayPoints = { new Vector3(15, 0, 5), new Vector3(11, 0, 22.5f), new Vector3(-33, 0, 28), new Vector3(-14, 0, -37), new Vector3(-14.5f, 0, -9.5f), new Vector3(-47.7f, 0, -9.5f), new Vector3(20.3f, 0, 10.1f), new Vector3(26.6f, 7.3f, -21.15f), new Vector3(-3.03f, 4.86f, -21.15f) };
+		//параметры сканера кубов-врагов
+		public const float rEnemyScan = 15;	// радиус сканера
+		public const float stepaside = -1;	// дистанция от носителя
+		public const float scanSpeed = 2f;	// скорость сканирования (значения от 1 до 5 -максимум, иначе будет не замечать цель	
+	    #endregion
 }
