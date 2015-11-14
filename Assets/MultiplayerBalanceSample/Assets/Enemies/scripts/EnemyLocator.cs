@@ -54,12 +54,12 @@ public class EnemyLocator : CommandMonoBehaviour
             //если попали в игрока, то держим на нём взгляд
             if (hit.transform.gameObject.tag == "Player")
             {
-                //публикуем в шину сообщение об обнаружении игрока - зовём другие кубы
-                EventAggregator.PlayerDetected.Publish(new GameEventArgs<Vector3>(targetObject.transform.position));
-
                 targetObject = hit.transform.gameObject;
                 search = false;
                 return;
+
+                //публикуем в шину сообщение об обнаружении игрока - зовём другие кубы
+                EventAggregator.PlayerDetected.Publish(new GameEventArgs<Vector3>(targetObject.transform.position));
             }
             //иначе обрубаем луч на первом коллаедре
             else
