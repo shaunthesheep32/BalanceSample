@@ -1,6 +1,6 @@
-﻿public class EventAggregator
-{
-	public static ZoneChangeEvent ZoneChanged = new ZoneChangeEvent();
-	public static CarDestroyEvent CarDestroyed = new CarDestroyEvent();
-	public static FatZombieBlow FatZombieBlowed = new FatZombieBlow ();
+﻿using UnityEngine;
+using System.Collections;
+
+public class EventAggregator : MonoBehaviour {
+    public static PlayerDetectedEvent PlayerDetected = new PlayerDetectedEvent();
 }

@@ -2,6 +2,6 @@
 using System.Collections;
 using Assets.Scripts.Utils.GameEvents;
 
-public class FatZombieBlow : GameEvent<GameEventArgs<int>> {
+public class PlayerDetectedEvent : GameEvent<GameEventArgs<Vector3>> {
 
 }

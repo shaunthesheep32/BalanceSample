@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts.Utils.GameEvents;
+using System;
 
-public class CubeEnemyBeh : MonoBehaviour {
+public class CubeEnemyBeh : CommandMonoBehaviour {
     private bool resist = false;
 
     public Material normalStateMaterial;
@@ -11,9 +13,9 @@ public class CubeEnemyBeh : MonoBehaviour {
     void Start () {
         StartCoroutine(ChangeState());
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         if (resist)
             GetComponent<Renderer>().material = resistStateMaterial;
         else
@@ -24,7 +26,7 @@ public class CubeEnemyBeh : MonoBehaviour {
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(MyContext.CubeEnemyChangeStateMin, MyContext.CubeEnemyChangeStateMax));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(MyContext.CubeEnemyChangeStateMin, MyContext.CubeEnemyChangeStateMax));
             resist = !resist;
         }
     }

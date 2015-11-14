@@ -16,7 +16,7 @@ public class InstantlyDetectorPlayer : MonoBehaviour
 	{
 		gos = GameObject.FindGameObjectsWithTag ("Player");
 		line = gameObject.GetComponent<LineRenderer>();
-		line.enabled = false;
+
 	}
 	void Update()
 	{
@@ -26,12 +26,18 @@ public class InstantlyDetectorPlayer : MonoBehaviour
 			float curDistance = diff.sqrMagnitude;
 			if (curDistance < 60) 
 			{
-				line.enabled = true;
-				Ray locator = new Ray (transform.position, go.transform.position);
-				line.SetPosition (0, locator.origin);
-				line.SetPosition (1, go.transform.position);
+                //проверяем видимость
+                if (Physics.Raycast(transform.position, diff, out hit, 60) && (hit.transform.gameObject.tag == "Player"))
+                {
+                    line.enabled = true;
+                    Ray locator = new Ray(transform.position, go.transform.position);
+                    line.SetPosition(0, locator.origin);
+                    line.SetPosition(1, go.transform.position);
+                    return;
+                }
 			}
-			else{line.enabled = false;}
+
 		}
+        line.enabled = false;
 	}
 }

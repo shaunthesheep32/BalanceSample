@@ -8,7 +8,7 @@ using System.Collections;
         public static int EnemiesExist = 0;
         public static int EnemiesEscaped = 0;
 		public static int EnemiesDestroyed = 0;
-		public static float angle = 180;		// начальный угол сканеры (с учетом особенностей 3D-объекта Quad, указываем 180, иначе ставим угол соответсвующий "лицу" объекта (по оси Z) 
+		public static float angle = 180;        // начальный угол сканеры (с учетом особенностей 3D-объекта Quad, указываем 180, иначе ставим угол соответсвующий "лицу" объекта (по оси Z) 
 		#endregion
 
         #region константы
@@ -19,7 +19,7 @@ using System.Collections;
         //враг-куб минимальный порог спавна, сек
         public const float CubeEnemySpawnMin = 5;
         //враг-куб максимальный порог спавна, сек
-        public const float CubeEnemySpawnMax = 120;
+        public const float CubeEnemySpawnMax = 10;
         //враг-куб минимальный порог жизни, сек
         public const float CubeEnemyLiveMin = 60;
         //враг-куб максимальный порог жизни, сек
@@ -38,7 +38,7 @@ using System.Collections;
 		public static Vector3[] WayPoints = { new Vector3(15, 0, 5), new Vector3(11, 0, 22.5f), new Vector3(-33, 0, 28), new Vector3(-14, 0, -37), new Vector3(-14.5f, 0, -9.5f), new Vector3(-47.7f, 0, -9.5f), new Vector3(20.3f, 0, 10.1f), new Vector3(26.6f, 7.3f, -21.15f), new Vector3(-3.03f, 4.86f, -21.15f) };
 		//параметры сканера кубов-врагов
 		public const float rEnemyScan = 15;	// радиус сканера
-		public const float stepaside = -1;	// дистанция от носителя
-		public const float scanSpeed = 2f;	// скорость сканирования (значения от 1 до 5 -максимум, иначе будет не замечать цель	
+		public const float stepaside = 1;	// дистанция локатора от носителя
+		public const float scanSpeed = .1f;	// скорость сканирования (значения от 0 до 5 -максимум, иначе будет не замечать цель	
 	    #endregion
 }
