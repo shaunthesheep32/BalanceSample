@@ -27,6 +27,7 @@ public class EnemySpawnScript : MonoBehaviour {
             yield return new WaitForSeconds(Random.Range(MyContext.CubeEnemyLiveMin, MyContext.CubeEnemyLiveMax));
             if (obj != null)
             {
+
                 Destroy(obj);
                 MyContext.EnemiesExist--;
                 MyContext.EnemiesEscaped++;

@@ -54,7 +54,7 @@ public class EnemyLocator : CommandMonoBehaviour
             //если попали в игрока, то держим на нём взгляд
             if (hit.transform.gameObject.tag == "Player")
             {
-                //публикуем в шину сообщение об обнаружении игрока
+                //публикуем в шину сообщение об обнаружении игрока - зовём другие кубы
                 EventAggregator.PlayerDetected.Publish(new GameEventArgs<Vector3>(targetObject.transform.position));
 
                 targetObject = hit.transform.gameObject;
@@ -77,11 +77,14 @@ public class EnemyLocator : CommandMonoBehaviour
 	void TrackingTarget()
 	{        
         pPos = parentObject.transform.position; // отсутп от родителя
-        var locator = new Ray(pPos, targetObject.transform.position - pPos);
-        transform.position = locator.GetPoint(MyContext.stepaside);
+        //вычисляем направление от куба до игрока - вычитание векторов
         Vector3 direction = targetObject.transform.position - pPos;
+        var locator = new Ray(pPos, direction);
+        //находим точку, куда ставить локатор 
+        transform.position = locator.GetPoint(MyContext.stepaside);
+        //поворачиваем локатор на игрока
         transform.rotation = Quaternion.LookRotation(direction);
-        //проверяем видимость игрока
+        //проверяем видимость игрока - если видим - направляем луч на него
         if (Physics.Raycast(transform.position, direction, out hit, MyContext.rEnemyScan) && (hit.transform.gameObject.tag == "Player"))
         {
             line.SetPosition(0, transform.position);
