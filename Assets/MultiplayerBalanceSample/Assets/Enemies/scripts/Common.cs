@@ -29,7 +29,7 @@ using System.Collections;
         //враг куб максимальный порог смены состояния
         public const float CubeEnemyChangeStateMax = 10;
         //дальность лазера
-        public const float MaxLaserDistance = 100;
+        public const float MaxLaserDistance = 30;
         //сила прыжка
         public const float JumpPower = 15f;
         //минимальное приближение куба к точке маршрута перед сменой

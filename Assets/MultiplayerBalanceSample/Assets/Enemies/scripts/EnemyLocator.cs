@@ -27,6 +27,9 @@ public class EnemyLocator : CommandMonoBehaviour
 		if (search) {
             ScanSpace ();
 		} else {
+			//публикуем в шину сообщение об обнаружении игрока - зовём другие кубы
+			EventAggregator.PlayerDetected.Publish(new GameEventArgs<Vector3>(targetObject.transform.position));
+
             //проверяем дальность - если вышли за пределы видимости. то опять начинаем поиск
             var distance = Vector3.Distance(transform.position, targetObject.transform.position);
             if (distance <= MyContext.rEnemyScan)
@@ -57,9 +60,6 @@ public class EnemyLocator : CommandMonoBehaviour
                 targetObject = hit.transform.gameObject;
                 search = false;
                 return;
-
-                //публикуем в шину сообщение об обнаружении игрока - зовём другие кубы
-                EventAggregator.PlayerDetected.Publish(new GameEventArgs<Vector3>(targetObject.transform.position));
             }
             //иначе обрубаем луч на первом коллаедре
             else

@@ -47,7 +47,7 @@ public class ShotScript : MonoBehaviour
                 }
             }
             else
-                line.SetPosition(1, ray.GetPoint(MyContext.MaxLaserDistance));
+				line.SetPosition(1, Camera.main.ScreenPointToRay(Input.mousePosition).GetPoint(MyContext.MaxLaserDistance));
 
             yield return null;
         }
