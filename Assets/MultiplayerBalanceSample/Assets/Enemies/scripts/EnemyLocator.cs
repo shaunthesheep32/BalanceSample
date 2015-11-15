@@ -11,9 +11,12 @@ public class EnemyLocator : CommandMonoBehaviour
 	Vector3 pPos;
 	public GameObject parentObject;
 	public GameObject targetObject;
+	public GameObject bullet;
+	public Transform BulletSpawn;
 	private Ray locator;
 	private RaycastHit hit;
 	private bool search;
+	private float delayFire;
 
 	void Start ()
 	{
@@ -89,7 +92,12 @@ public class EnemyLocator : CommandMonoBehaviour
         {
             line.SetPosition(0, transform.position);
             line.SetPosition(1, new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z));
-        }
+		// --- F I R E --- //
+			if (delayFire == 0) {
+				Instantiate(bullet, new Vector3(BulletSpawn.position.x, BulletSpawn.position.y+1, BulletSpawn.position.z), BulletSpawn.rotation);
+				delayFire = MyContext.fireRate;
+			} else {delayFire -= Time.timeScale;}
+		}
         //потеряли цель
         else
             search = true;       

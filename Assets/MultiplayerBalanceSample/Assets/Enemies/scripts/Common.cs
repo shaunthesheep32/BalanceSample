@@ -40,5 +40,9 @@ using System.Collections;
 		public const float rEnemyScan = 15;	// радиус сканера
 		public const float stepaside = 1;	// дистанция локатора от носителя
 		public const float scanSpeed = .1f;	// скорость сканирования (значения от 0 до 5 -максимум, иначе будет не замечать цель	
-	    #endregion
+	    //пули врагов
+		public const float bulletSpeed = 50f;	//скорость полета, значение выше = выше скорость
+		public const float bulletLifeTime = 3f;	//время жизни пули в секундах (уничтожается по истечении)
+		public const float fireRate = 100f;		//скорострельность, значение ВЫШЕ = скорострельность НИЖЕ
+		#endregion
 }
