@@ -17,6 +17,7 @@ public class EnemyLocator : CommandMonoBehaviour
 	private RaycastHit hit;
 	private bool search;
 	private float delayFire;
+    private float angle = MyContext.angle;
 
 	void Start ()
 	{
@@ -48,9 +49,9 @@ public class EnemyLocator : CommandMonoBehaviour
 	{
 		// в direction переписываем готовые координаты X и Z, идя по радиусу rEnemyScan
 		pPos = parentObject.transform.position;	// отсутп от родителя
-		Vector3 pos = new Vector3((Mathf.Sin (MyContext.angle * Mathf.Deg2Rad) * MyContext.stepaside) + pPos.x, transform.position.y, (Mathf.Cos (MyContext.angle * Mathf.Deg2Rad) * MyContext.stepaside) + pPos.z);
+		Vector3 pos = new Vector3((Mathf.Sin (angle * Mathf.Deg2Rad) * MyContext.stepaside) + pPos.x, transform.position.y, (Mathf.Cos (angle * Mathf.Deg2Rad) * MyContext.stepaside) + pPos.z);
 		transform.position = pos;
-		Quaternion rot = Quaternion.Euler(0, MyContext.angle, 0);
+		Quaternion rot = Quaternion.Euler(0, angle, 0);
         transform.rotation = rot;
 		locator = new Ray (transform.position, transform.forward);
 		line.SetPosition (0, locator.origin);
@@ -73,7 +74,7 @@ public class EnemyLocator : CommandMonoBehaviour
             line.SetPosition(1, locator.GetPoint(MyContext.rEnemyScan));
 
         //прибавляем угол
-	    if (MyContext.angle >= 359) {MyContext.angle = 0;} else MyContext.angle += MyContext.scanSpeed; // скидываем угол на 0 при 359 градусах
+	    if (angle >= 359) {angle = 0;} else angle += MyContext.scanSpeed; // скидываем угол на 0 при 359 градусах
 		
 
 	}
@@ -87,15 +88,22 @@ public class EnemyLocator : CommandMonoBehaviour
         transform.position = locator.GetPoint(MyContext.stepaside);
         //поворачиваем локатор на игрока
         transform.rotation = Quaternion.LookRotation(direction);
+        //пересчитываем угол
+        angle = 180;// Vector3.Angle(parentObject.transform.forward, direction)*Mathf.Rad2Deg;
+
         //проверяем видимость игрока - если видим - направляем луч на него
         if (Physics.Raycast(transform.position, direction, out hit, MyContext.rEnemyScan) && (hit.transform.gameObject.tag == "Player"))
         {
             line.SetPosition(0, transform.position);
             line.SetPosition(1, new Vector3(targetObject.transform.position.x, transform.position.y, targetObject.transform.position.z));
-		// --- F I R E --- //
+		    // --- F I R E --- //
 			if (delayFire == 0) {
-				Instantiate(bullet, new Vector3(BulletSpawn.position.x, BulletSpawn.position.y+1, BulletSpawn.position.z), BulletSpawn.rotation);
-				delayFire = MyContext.fireRate;
+                //порождаем пулю в BulletSpawn и выбираем вектор куда "смотрит" куб
+                if (Vector3.Angle(new Vector3(BulletSpawn.transform.up.x,0, BulletSpawn.transform.up.z), new Vector3(direction.x, 0, direction.z)) <= MyContext.AngleToShoot)
+                {
+                    Instantiate(bullet, new Vector3(BulletSpawn.position.x, BulletSpawn.position.y, BulletSpawn.position.z), Quaternion.LookRotation(BulletSpawn.transform.up));
+                    delayFire = MyContext.fireRate;
+                }
 			} else {delayFire -= Time.timeScale;}
 		}
         //потеряли цель

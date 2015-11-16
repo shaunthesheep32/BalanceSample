@@ -4,20 +4,20 @@ using System.Collections;
 public class BulletFly : MonoBehaviour
 {
 
-	public GameObject bullet;
-
 	void Start ()
 	{
-		GetComponent<Rigidbody>().velocity = transform.forward * MyContext.bulletSpeed;
-		Destroy (bullet, MyContext.bulletLifeTime);
+        var rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward * MyContext.bulletSpeed;
+		Destroy (this, MyContext.bulletLifeTime);
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			Debug.Log("Hit the player");
-			Destroy(bullet);
+            //Debug.Log("Hit the player");
+            MyContext.PlayerHealth -= MyContext.DamagePercent;
+			Destroy(this);
 		}
 	}
 }

@@ -9,6 +9,7 @@ using System.Collections;
         public static int EnemiesEscaped = 0;
 		public static int EnemiesDestroyed = 0;
 		public static float angle = 180;        // начальный угол сканеры (с учетом особенностей 3D-объекта Quad, указываем 180, иначе ставим угол соответсвующий "лицу" объекта (по оси Z) 
+        public static int PlayerHealth = 100; // здоровье игрока
 		#endregion
 
         #region константы
@@ -39,10 +40,12 @@ using System.Collections;
 		//параметры сканера кубов-врагов
 		public const float rEnemyScan = 15;	// радиус сканера
 		public const float stepaside = 1;	// дистанция локатора от носителя
-		public const float scanSpeed = .1f;	// скорость сканирования (значения от 0 до 5 -максимум, иначе будет не замечать цель	
+		public const float scanSpeed = 1f;	// скорость сканирования (значения от 0 до 5 -максимум, иначе будет не замечать цель	
 	    //пули врагов
-		public const float bulletSpeed = 50f;	//скорость полета, значение выше = выше скорость
+		public const float bulletSpeed = 10f;	//скорость полета, значение выше = выше скорость
 		public const float bulletLifeTime = 3f;	//время жизни пули в секундах (уничтожается по истечении)
-		public const float fireRate = 100f;		//скорострельность, значение ВЫШЕ = скорострельность НИЖЕ
-		#endregion
+		public const float fireRate = 100f;     //скорострельность, значение ВЫШЕ = скорострельность НИЖЕ
+        public const float AngleToShoot = 5f; //на склько градусов враг недовёрнут во время первого выстрела
+        public const int DamagePercent = 10; //дамаг игроку от выстрела куба
+        #endregion
 }
